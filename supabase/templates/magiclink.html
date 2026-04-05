@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Unearth Radio magic link</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f5f0e8; font-family: 'Segoe UI', Arial, sans-serif;">
+
+    <!-- Outer wrapper -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f5f0e8; min-height: 100vh;">
+      <tr>
+        <td align="center" style="padding: 40px 16px;">
+
+          <!-- Inner card -->
+          <table width="560" border="0" cellspacing="0" cellpadding="0"
+            style="background-color: #FFF9ED; border-radius: 12px; max-width: 560px; width: 100%; overflow: hidden;">
+            <tr>
+              <td style="padding: 48px 40px 40px 40px;">
+
+                <!-- ── Header ─────────────────────────────────── -->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="center" style="padding-bottom: 24px;">
+
+                      <!-- Radio icon mark -->
+                      <div style="font-size: 36px; line-height: 1; margin-bottom: 12px;">📻</div>
+
+                      <!-- App name -->
+                      <div style="font-size: 26px; font-weight: 700; color: #526447; letter-spacing: -0.5px; margin-bottom: 6px;">
+                        Unearth Radio
+                      </div>
+
+                      <!-- Tagline -->
+                      <div style="font-size: 13px; color: #8a7f72; letter-spacing: 0.5px; text-transform: uppercase;">
+                        Discover radio from around the world
+                      </div>
+
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- ── Divider ─────────────────────────────────── -->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td style="border-top: 1px solid #e8e0d0; padding-bottom: 32px;"></td>
+                  </tr>
+                </table>
+
+                <!-- ── Greeting + body copy ───────────────────── -->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td style="padding-bottom: 10px;">
+                      <p style="margin: 0; font-size: 18px; font-weight: 600; color: #3b342c;">Hello there,</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 32px;">
+                      <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #5c5249;">
+                        Your magic link is ready. Click the button below to sign in and start exploring radio stations from every corner of the globe — no password needed.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- ── CTA button ─────────────────────────────── -->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="center" style="padding-bottom: 36px;">
+                      <a href="{{ .ConfirmationURL }}"
+                        style="display: block; background-color: #526447; color: #ffffff; text-decoration: none;
+                               font-size: 16px; font-weight: 600; text-align: center;
+                               padding: 14px 32px; border-radius: 24px; letter-spacing: 0.2px;
+                               max-width: 320px; margin: 0 auto;">
+                        Open Unearth Radio
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- ── OTP fallback ───────────────────────────── -->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td style="padding-bottom: 32px;">
+                      <div style="background-color: #f0ebe0; border: 1px dashed #c8bfb0; border-radius: 8px; padding: 20px 24px;">
+                        <p style="margin: 0 0 10px 0; font-size: 13px; color: #8a7f72; text-transform: uppercase; letter-spacing: 0.5px;">
+                          Or use this code
+                        </p>
+                        <p style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 28px;
+                                  font-weight: 700; color: #86523B; letter-spacing: 6px; word-break: break-all;">
+                          {{ .Token }}
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- ── Divider ─────────────────────────────────── -->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td style="border-top: 1px solid #e8e0d0; padding-bottom: 24px;"></td>
+                  </tr>
+                </table>
+
+                <!-- ── Footer ─────────────────────────────────── -->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <p style="margin: 0 0 6px 0; font-size: 13px; color: #8a7f72; line-height: 1.6;">
+                        This link expires in <strong style="color: #6b6259;">1 hour</strong>.
+                      </p>
+                      <p style="margin: 0 0 6px 0; font-size: 13px; color: #8a7f72; line-height: 1.6;">
+                        If you didn't request this, you can safely ignore this email.
+                      </p>
+                      <p style="margin: 0; font-size: 13px; color: #8a7f72; line-height: 1.6;">
+                        — The Unearth Radio team
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+          </table>
+          <!-- /Inner card -->
+
+        </td>
+      </tr>
+    </table>
+    <!-- /Outer wrapper -->
+
+  </body>
+</html>
