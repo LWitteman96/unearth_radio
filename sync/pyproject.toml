@@ -1,0 +1,11 @@
+[project]
+name = "sync"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "supabase==2.25.0",
+    "requests>=2.28.0",
+    "dnspython>=2.4.0",
+]
+
+
