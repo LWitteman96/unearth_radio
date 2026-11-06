@@ -13,12 +13,14 @@
   <a href="https://www.docker.com/">
     <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker" alt="Docker">
   </a>
-  <a href="https://github.com/luukwitteman/radio/blob/main/LICENSE">
+  <a href="https://github.com/LWitteman96/unearth_radio/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
   </a>
 </p>
 
 > Discover radio stations worldwide. Recognize songs playing on any station. Earn points for exploration.
+
+**Status:** working prototype, unreleased and currently paused. Recognition caching, distance and obscurity scoring, weekly and friends leaderboards, Google sign-in, and Edge Functions are planned but not built yet.
 
 Unearth Radio is a cross-platform mobile application that transforms how you explore global radio. Browse thousands of stations by genre, listen with background playback, identify songs via audio fingerprinting, and compete on leaderboards through a gamified discovery system.
 
@@ -43,12 +45,12 @@ Unearth Radio is a cross-platform mobile application that transforms how you exp
 
 | Feature | Description |
 |---------|-------------|
-| **Global Station Discovery** | Browse 50,000+ radio stations worldwide, filtered by genre, country, and obscurity score |
+| **Global Station Discovery** | Browse 50,000+ radio stations worldwide, filtered by genre and country, sorted by obscurity score |
 | **Live Radio Streaming** | Stream stations with background playback and ICY metadata for real-time "now playing" |
 | **Song Recognition** | Tap to identify songs playing on any station via AudD music fingerprinting API |
-| **Gamification** | Earn points for geographic distance, station obscurity, and song recognition |
-| **Leaderboards** | Compete with friends and globally on weekly and all-time leaderboards |
-| **YouTube Music Links** | Open recognized songs directly in YouTube Music via deep links |
+| **Gamification** | Earn points for song recognition (distance and obscurity bonuses are planned) |
+| **Leaderboards** | Compete on a global all-time leaderboard (weekly and friends views are planned) |
+| **Music Links** | Open recognized songs in Spotify and Apple Music |
 
 ---
 
@@ -57,7 +59,7 @@ Unearth Radio is a cross-platform mobile application that transforms how you exp
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                              EXTERNAL SERVICES                              │
-│  RadioBrowser API          AudD API              ACRCloud (fallback)       │
+│  RadioBrowser API          AudD API              ACRCloud (disabled)       │
 │  (station catalog)        (song recognition)    (recognition fallback)    │
 └───────────┬────────────────────┬───────────────────────┬───────────────────┘
             │ daily sync         │ fingerprint request    │
@@ -70,7 +72,7 @@ Unearth Radio is a cross-platform mobile application that transforms how you exp
 │  • DNS discovery │   │  • Polls PGMQ queue                                │
 │  • Incremental   │   │  • ffmpeg stream capture                           │
 │    diff sync     │   │  • AudD API call                                   │
-│  • PostGIS geo   │   │  • Result caching (3min)                           │
+│  • PostGIS geo   │   │  • Result storage                                  │
 └───────────┬──────┘   └──────────────────────┬────────────────────────────┘
             │                                  │
             │ writes                           │ reads queue / writes results
@@ -81,8 +83,8 @@ Unearth Radio is a cross-platform mobile application that transforms how you exp
 │                                                                           │
 │  ┌─────────────┐  ┌────────────┐  ┌───────────┐  ┌────────────────────┐│
 │  │    Auth     │  │ PostgreSQL │  │  Realtime │  │  Edge Functions    ││
-│  │ Google SSO  │  │ + PostGIS  │  │ (WebSocket│  │  (Deno/TypeScript)  ││
-│  │ Magic Link  │  │ + PGMQ     │  │  push)    │  │  point scoring      ││
+│  │ Magic Link  │  │ + PostGIS  │  │ (WebSocket│  │  (planned)          ││
+│  │             │  │ + PGMQ     │  │  push)    │  │  point scoring      ││
 │  └─────────────┘  └────────────┘  └───────────┘  └────────────────────┘│
 │                                                                           │
 │  ┌─────────────┐  ┌────────────┐  ┌───────────┐                         │
@@ -110,7 +112,7 @@ Unearth Radio is a cross-platform mobile application that transforms how you exp
 | Component | Technology | Responsibility |
 |-----------|------------|----------------|
 | **Flutter Client** | Flutter + Riverpod | UI, audio playback, ICY metadata, user interactions |
-| **Backend** | Supabase | Auth, PostgreSQL, Realtime, Edge Functions, Storage |
+| **Backend** | Supabase | Auth, PostgreSQL, Realtime, Storage |
 | **Recognition Worker** | Python + ffmpeg | Audio capture, AudD API calls, result storage |
 | **Sync Worker** | Python + UV | RadioBrowser → Postgres station catalog sync |
 
@@ -126,11 +128,11 @@ Unearth Radio is a cross-platform mobile application that transforms how you exp
 
 ### Backend (Supabase)
 - **PostgreSQL** — Primary datastore with PostGIS for geographic queries
-- **PostGIS** — Spatial data for distance-based scoring
+- **PostGIS** — Station locations (distance-based scoring is planned)
 - **PGMQ** — Native Postgres message queue for recognition pipeline
 - **Realtime** — WebSocket push for instant recognition results
-- **Edge Functions** — Serverless Deno functions for point calculations
-- **Auth** — Google SSO + Magic Link authentication
+- **Edge Functions** (planned) — Serverless Deno functions for point calculations
+- **Auth** — Magic Link authentication (Google SSO is planned)
 
 ### Services
 - **Python (UV)** — Worker services with modern Python tooling
@@ -155,8 +157,8 @@ Unearth Radio is a cross-platform mobile application that transforms how you exp
 ### 1. Clone & Install Dependencies
 
 ```bash
-git clone https://github.com/luukwitteman/radio.git
-cd radio
+git clone https://github.com/LWitteman96/unearth_radio.git
+cd unearth_radio
 
 # Flutter dependencies
 cd app
